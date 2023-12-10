@@ -9,7 +9,8 @@ function myGraph:new(func, delay, x_start , y_start)
         i = 1,
         delay = delay or 0.5,
         timer = 0,
-        lineData = {x_start, y_start - 0.0001, x_start, y_start}
+        lineData = {x_start, y_start - 0.0001, x_start, y_start},
+        label = "SIN"
     }   
 
     function instance:update(dt)       
@@ -42,6 +43,14 @@ function myGraph:new(func, delay, x_start , y_start)
         end   
         
         love.graphics.line(self.lineData)
+
+        
+        if func == math.cos then
+           self.label = "COS"         
+        elseif func == math.tan then
+            self.label = "TAN"        
+        end
+        love.graphics.printf(self.label, x_start + 30, y_start - 50, 500, "left")
     end
 
     return instance
